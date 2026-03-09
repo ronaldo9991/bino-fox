@@ -5,14 +5,6 @@ import { z } from "zod";
 import { randomUUID } from "crypto";
 
 // Only PostgreSQL is supported
-const isPostgres = process.env.DATABASE_URL?.startsWith('postgresql://') || 
-                   process.env.DATABASE_URL?.startsWith('postgres://') ||
-                   process.env.DATABASE_PUBLIC_URL?.startsWith('postgresql://') ||
-                   process.env.DATABASE_PUBLIC_URL?.startsWith('postgres://');
-
-if (!isPostgres) {
-  throw new Error('PostgreSQL connection string required. DATABASE_URL must start with postgresql:// or postgres://');
-}
 
 // Helper functions to use PostgreSQL table builder and column types
 const tableBuilder = pgTable;

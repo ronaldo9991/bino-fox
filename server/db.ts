@@ -12,13 +12,6 @@ console.log('  PGHOST:', process.env.PGHOST || 'NOT SET');
 const isPostgres = databaseUrl?.startsWith('postgresql://') || 
                    databaseUrl?.startsWith('postgres://');
 
-if (!isPostgres) {
-  console.error('❌ ERROR: DATABASE_URL must be a PostgreSQL connection string!');
-  console.error('   DATABASE_URL must start with postgresql:// or postgres://');
-  console.error('   Current DATABASE_URL:', databaseUrl ? databaseUrl.substring(0, 50) + '...' : 'NOT SET');
-  throw new Error('PostgreSQL connection string required. DATABASE_URL must start with postgresql:// or postgres://');
-}
-
 if (isPostgres) {
   console.log('✅ PostgreSQL detected from DATABASE_URL');
   if (databaseUrl?.includes('.rds.amazonaws.com')) {
@@ -28,6 +21,8 @@ if (isPostgres) {
   } else {
     console.log('   Database: PostgreSQL');
   }
+} else {
+  console.warn('⚠️  DATABASE_URL not set or invalid at module load — will retry at runtime');
 }
 
 let db: any;
