@@ -6,4 +6,3 @@ run:
   command: node -e "const http = require('http'); http.createServer((req, res) => { res.writeHead(200); res.end('OK'); }).listen(8080, '0.0.0.0');"
   network:
     port: 8080
-
