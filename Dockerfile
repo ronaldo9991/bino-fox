@@ -42,11 +42,11 @@ RUN chown -R nodejs:nodejs /app
 USER nodejs
 
 # Expose port
-EXPOSE 5000
+EXPOSE 8080
 
 # Set environment to production
 ENV NODE_ENV=production
-ENV PORT=5000
+ENV PORT=8080
 
 # Start the application
 CMD ["node", "dist/index.js"]
