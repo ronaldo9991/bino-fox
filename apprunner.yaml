@@ -19,31 +19,31 @@ build:
 # Production runtime configuration
 run:
   runtime-version: 20
-  command: npm start
+  command: npm run start:apprunner
   network:
-    port: 5000
+    port: 8080
     env: PORT
   env:
     - name: NODE_ENV
       value: production
     - name: PORT
-      value: "5000"
-    # Database Configuration for AWS RDS PostgreSQL
+      value: "8080"
+    # Database Configuration - Set these in App Runner Console
     - name: DATABASE_URL
-      value: "postgresql://username:password@database-1.ckzyy4eccgqg.us-east-1.rds.amazonaws.com:5432/database_name?sslmode=require"
+      value: ${DATABASE_URL}
     # Session Configuration
     - name: SESSION_SECRET
-      value: "binofox-production-session-secret-2025"
+      value: ${SESSION_SECRET}
     # Frontend URL (update with your App Runner URL)
     - name: FRONTEND_URL
-      value: "https://your-app-service.us-east-1.awsapprunner.com"
+      value: ${FRONTEND_URL}
     # Stripe Configuration (optional)
     - name: STRIPE_SECRET_KEY
-      value: "sk_live_your_stripe_secret_key_here"
+      value: ${STRIPE_SECRET_KEY}
     - name: STRIPE_PUBLISHABLE_KEY
-      value: "pk_live_your_stripe_publishable_key_here"
+      value: ${STRIPE_PUBLISHABLE_KEY}
     - name: VITE_STRIPE_PUBLISHABLE_KEY
-      value: "pk_live_your_stripe_publishable_key_here"
+      value: ${VITE_STRIPE_PUBLISHABLE_KEY}
 
 # Health check configuration for AWS App Runner
 health-check:
