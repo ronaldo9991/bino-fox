@@ -205,8 +205,13 @@ async function bootstrap(): Promise<{ app: express.Express; server: Server }> {
   }
 
   const port = parseInt(process.env.PORT || "5000", 10);
+  console.log(`🚀 Starting server on port ${port}`);
+  console.log(`🌍 Environment: ${process.env.NODE_ENV}`);
+  console.log(`📊 Database URL: ${process.env.DATABASE_URL ? 'configured' : 'missing'}`);
+  
   httpServer.listen(port, "0.0.0.0", () => {
     log(`serving on port ${port}`);
+    console.log(`✅ Server successfully started and listening on port ${port}`);
   });
 
   return { app, server: httpServer };
