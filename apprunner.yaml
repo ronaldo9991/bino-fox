@@ -12,8 +12,6 @@ build:
       - npm run build:frontend
       - echo "🔨 Building backend (Express/TypeScript)..."
       - npm run build:backend
-      - echo "🗄️ Initializing database schema..."
-      - npm run db:push || echo "⚠️ Schema already initialized or drizzle-kit not available"
       - echo "✅ Build complete!"
 
 # Production runtime configuration
@@ -28,22 +26,22 @@ run:
       value: production
     - name: PORT
       value: "8080"
-    # Database Configuration - Set these in App Runner Console
+    # Database Configuration - Replace with actual values in App Runner Console
     - name: DATABASE_URL
-      value: ${DATABASE_URL}
+      value: "postgresql://postgres:postgres@localhost:5432/binofox"
     # Session Configuration
     - name: SESSION_SECRET
-      value: ${SESSION_SECRET}
-    # Frontend URL (update with your App Runner URL)
+      value: "binofox-production-session-secret-2025"
+    # Frontend URL - Update with your App Runner URL
     - name: FRONTEND_URL
-      value: ${FRONTEND_URL}
-    # Stripe Configuration (optional)
+      value: "https://your-app-service.us-east-1.awsapprunner.com"
+    # Stripe Configuration (optional - can be left as is for now)
     - name: STRIPE_SECRET_KEY
-      value: ${STRIPE_SECRET_KEY}
+      value: "sk_test_placeholder"
     - name: STRIPE_PUBLISHABLE_KEY
-      value: ${STRIPE_PUBLISHABLE_KEY}
+      value: "pk_test_placeholder"
     - name: VITE_STRIPE_PUBLISHABLE_KEY
-      value: ${VITE_STRIPE_PUBLISHABLE_KEY}
+      value: "pk_test_placeholder"
 
 # Health check configuration for AWS App Runner
 health-check:
